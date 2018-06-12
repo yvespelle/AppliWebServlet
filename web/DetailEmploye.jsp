@@ -19,34 +19,30 @@
     </head>
     <body>
 
-        <%
-            EmployeeBean User2 = (EmployeeBean) request.getAttribute("cleEmp");
-        %>  
-
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
                 <form class="form-horizontal" action="Controleur" >
                     <fieldset>
-                        <legend>Détails de <% out.println(User2.getPrenom() + " " + User2.getNom());%></legend>
+                        <legend>Détails de ${cleEmp.prenom} ${cleEmp.nom}</legend>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="textinput">Nom</label>
                             <div class="col-sm-10">
-                                <input type="text" name="nom" value=<%= User2.getNom()%>  class="form-control">
+                                <input type="text" name="nom" value="${cleEmp.nom}"  class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="textinput">Prénom</label>
                             <div class="col-sm-10">
-                                <input type="text" name="prenom"  value=<%= User2.getPrenom()%> class="form-control">
+                                <input type="text" name="prenom"  value="${cleEmp.prenom}" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="textinput">Tél dom</label>
                             <div class="col-sm-10">
-                                <input type="text" name="teldom" value=<%= User2.getTeldom()%>  class="form-control">
+                                <input type="text" name="teldom" value="${cleEmp.teldom}"  class="form-control">
                             </div>
                         </div>
 
@@ -54,31 +50,31 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="textinput">Tél pro</label>
                             <div class="col-sm-10">
-                                <input type="text" name="telpro" value=<%= User2.getTelpro()%>  class="form-control">
+                                <input type="text" name="telpro" value="${cleEmp.telpro}" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="textinput">Adresse</label>
                             <div class="col-sm-4">
-                                <input type="text" name="adresse" value=<%= User2.getAdresse()%>   class="form-control">
+                                <input type="text" name="adresse" value="${cleEmp.adresse}" class="form-control">
                             </div>
 
                             <label class="col-sm-2 control-label" for="textinput">Code postal</label>
                             <div class="col-sm-4">
-                                <input type="text" name="codepostal" value=<%= User2.getCodepostal()%>  class="form-control">
+                                <input type="text" name="codepostal" value="${cleEmp.codepostal}" class="form-control">
                             </div>
                         </div>
 
                         <label class="col-sm-2 control-label" for="textinput">Ville</label>
                         <div class="col-sm-4">
-                            <input type="text" name="ville" value=<%= User2.getVille()%> class="form-control">
+                            <input type="text" name="ville" value="${cleEmp.ville}" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="textinput">Adresse e-mail</label>
                             <div class="col-sm-4">
-                                <input type="text" name="email" value=<%= User2.getEmail()%>  class="form-control">
+                                <input type="text" name="email" value="${cleEmp.email}" class="form-control">
                             </div>
                         </div>
 
