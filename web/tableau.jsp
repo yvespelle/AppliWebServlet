@@ -4,6 +4,7 @@
     Author     : esic
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.solutec.EmployeeBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -41,33 +42,52 @@
                         </thead>
 
                         </tr>
-                        <%
-                    ArrayList<EmployeeBean> listUser2 = (ArrayList<EmployeeBean>) request.getAttribute("cleListe");
-                    int i;
-                    for (i = 0; i < listUser2.size(); i++) {
-                %>
-                <tr> 
-                    <td>  <INPUT TYPE="radio" NAME='idClient' VALUE="<%out.println(listUser2.get(i).getId());%>" CHECKED ></td>
-                    <td> <span style="color: blueviolet"> <% out.println(listUser2.get(i).getNom());%></span></td>
-                    <td>  <% out.println(listUser2.get(i).getPrenom());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getTeldom());%>    </td>
-                    <td>      </td>
-                    <td>  <% out.println(listUser2.get(i).getTelpro());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getAdresse());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getCodepostal());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getVille());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getEmail());%>    </td>
+                        <%--
+                           <%
+                       ArrayList<EmployeeBean> listUser2 = (ArrayList<EmployeeBean>) request.getAttribute("cleListe");
+                       int i;
+                       for (i = 0; i < listUser2.size(); i++) {
+                   %>
+                   <tr> 
+                       <td>  <INPUT TYPE="radio" NAME='idClient' VALUE="<%out.println(listUser2.get(i).getId());%>" CHECKED ></td>
+                       <td> <span style="color: blueviolet"> <% out.println(listUser2.get(i).getNom());%></span></td>
+                       <td>  <% out.println(listUser2.get(i).getPrenom());%>    </td>
+                       <td>  <% out.println(listUser2.get(i).getTeldom());%>    </td>
+                       <td>  <% out.println(listUser2.get(i).getTelpro());%>    </td>
+                       <td>  <% out.println(listUser2.get(i).getAdresse());%>    </td>
+                       <td>  <% out.println(listUser2.get(i).getCodepostal());%>    </td>
+                       <td>  <% out.println(listUser2.get(i).getVille());%>    </td>
+                       <td>  <% out.println(listUser2.get(i).getEmail());%>    </td>
 
                     <% } %>
-                </tr>    
+                </tr>   
+
+                        --%>
+                        <table>
+                            
+                            <c:forEach items="${EmployeeBean}" var="unePersonne"
+                                       <tr>
+                                           <td> ${unePersonne.cleEmp.Nom} </td>
+                                           <td> ${unePersonne.cleEmp.Prenom} </td>
+                                           <td> ${unePersonne.cleEmp.Teldom} </td> 
+                                           <td> ${unePersonne.cleEmp.Telpro} </td>
+                                           <td> ${unePersonne.cleEmp.Adresse} </td>                            
+                                           <td> ${unePersonne.cleEmp.Codepostal} </td>
+                                           <td> ${unePersonne.cleEmp.Ville} </td>
+                                           <td> ${unePersonne.cleEmp.Email} </td>
+                                       </tr>
+
+                        </c:forEach>
+                    </table>
+
                     <input type='submit' name="bouton" value="Quitter" onclick="twFermer()" />
                     <input type='submit' name="bouton" value="Supprimer"/>                                     
                     <input type='submit' name="bouton" value="Details"/>
-                     <input type='submit' name="bouton" value="Ajouter"/>
-                </form>
-            </div>
-        </div>         
-    </body>
+                    <input type='submit' name="bouton" value="Ajouter"/>
+            </form>
+        </div>
+    </div>         
+</body>
 </html>
 
 
