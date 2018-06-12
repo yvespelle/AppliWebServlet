@@ -36,7 +36,7 @@ public class EmployesConstantes {
     public static final String ACTION_QUITTER = "Quitter";
 
     public static final String PAGE_INDEX = "accueil.jsp";
-    public static final String PAGE_CONTROLEUR = "controleur.jsp";
+    public static final String PAGE_CONTROLEUR = "Controleur";
     public static final String PAGE_TABLEAU = "tableau.jsp";
     public static final String PAGE_DETAIL_EMPLOYE = "DetailEmploye.jsp";
 }

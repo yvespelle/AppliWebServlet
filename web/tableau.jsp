@@ -65,19 +65,19 @@
                         --%>
                         <table>
                             
-                            <c:forEach items="${EmployeeBean}" var="unePersonne"
+                            <c:forEach items="${cleListe}" var="unePersonne">
                                        <tr>
-                                           <td> ${unePersonne.cleEmp.Nom} </td>
-                                           <td> ${unePersonne.cleEmp.Prenom} </td>
-                                           <td> ${unePersonne.cleEmp.Teldom} </td> 
-                                           <td> ${unePersonne.cleEmp.Telpro} </td>
-                                           <td> ${unePersonne.cleEmp.Adresse} </td>                            
-                                           <td> ${unePersonne.cleEmp.Codepostal} </td>
-                                           <td> ${unePersonne.cleEmp.Ville} </td>
-                                           <td> ${unePersonne.cleEmp.Email} </td>
+                                           <td> ${unePersonne.nom} </td>
+                                           <td> ${unePersonne.prenom} </td>
+                                           <td> ${unePersonne.teldom} </td> 
+                                           <td> ${unePersonne.telpro} </td>
+                                           <td> ${unePersonne.adresse} </td>                            
+                                           <td> ${unePersonne.codepostal} </td>
+                                           <td> ${unePersonne.ville} </td>
+                                           <td> ${unePersonne.email} </td>
                                        </tr>
 
-                        </c:forEach>
+                            </c:forEach>
                     </table>
 
                     <input type='submit' name="bouton" value="Quitter" onclick="twFermer()" />

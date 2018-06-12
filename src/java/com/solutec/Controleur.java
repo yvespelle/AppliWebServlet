@@ -64,6 +64,8 @@ public class Controleur extends HttpServlet {
             rs = stmt.executeQuery(EmployesConstantes.requete);
 
             UtilBean user1 = new UtilBean();
+            
+            String action;
 
             while (rs.next()) {
                 user1.setLogin(rs.getString("login"));
@@ -98,9 +100,97 @@ public class Controleur extends HttpServlet {
 
             String btn = request.getParameter("bouton");
             String cleId = request.getParameter("idClient");
-
+            /*
             if (btn != null) {
                 if (btn.equals(EmployesConstantes.ACTION_SUPPRIMER)) {
+                    Persistance p = new Persistance();
+                    //ResultSet rs3 = stmt.executeQuery(EmployesContantes.REQ_SUPPRIMER);
+                    p.supprimer(EmployesConstantes.REQ_SUPPRIMER, cleId);
+
+                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
+                    request.setAttribute("cleListe", p.getEmployes(rs2));
+
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                }
+
+                if (btn.equals("Ajouter")) {
+                    request.getRequestDispatcher("test.jsp").forward(request, response);
+                }
+
+                if (btn.equals("Annuler")) {
+                    Persistance p = new Persistance();
+                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
+                    request.setAttribute("cleListe", p.getEmployes(rs2));
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                }
+
+                if (btn.equals("Inserer")) {
+                    Persistance p = new Persistance();
+                    cleId = (String) session.getAttribute("cleEmpSession");
+                    String cleNom = request.getParameter("nom");
+                    String clePrenom = request.getParameter("prenom");
+                    String cleTeldom = request.getParameter("teldom");
+                    String cleTelport = request.getParameter("telport");
+                    String cleTelpro = request.getParameter("telpro");
+                    String cleAdresse = request.getParameter("adresse");
+                    String cleCodepostal = request.getParameter("codepostal");
+                    String cleVille = request.getParameter("ville");
+                    String cleEmail = request.getParameter("email");
+
+                    p.inserer(EmployesConstantes.REQ_ADD_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleTeldom, cleTelport, cleTelpro, cleCodepostal, cleVille);
+
+                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
+                    request.setAttribute("cleListe", p.getEmployes(rs2));
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                }
+
+                if (btn.equals(EmployesConstantes.ACTION_DETAILS)) {
+                    Persistance p = new Persistance();
+                    String cleEmp = request.getParameter("idClient");
+                    session.setAttribute("cleEmpSession", cleEmp);
+                    rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleEmp);
+                    request.setAttribute("cleEmp", p.getEmp(rs2));
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
+
+                }
+
+                if (btn.equals(EmployesConstantes.ACTION_VOIR_LISTE)) {
+                    Persistance p = new Persistance();
+                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
+                    request.setAttribute("cleListe", p.getEmployes(rs2));
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                }
+
+                if (btn.equals(EmployesConstantes.ACTION_MODIFIER)) {
+                    Persistance p = new Persistance();
+                    cleId = (String) session.getAttribute("cleEmpSession");
+                    String cleNom = request.getParameter("nom");
+                    String clePrenom = request.getParameter("prenom");
+                    String cleAdresse = request.getParameter("adresse");
+                    String cleEmail = request.getParameter("email");
+                    p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
+
+                    rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleId);
+                    request.setAttribute("cleEmp", p.getEmp(rs2));
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
+                }
+
+                if (btn.equals(EmployesConstantes.ACTION_QUITTER)) {
+                    response.sendRedirect(EmployesConstantes.PAGE_INDEX);
+                }
+                */
+                        
+            if (btn != null) {
+                 
+                switch (btn) 
+                {
+                    case (EmployesConstantes.ACTION_SUPPRIMER):
+                        Persistance p = new Persistance();
+                      
+                        
+                    
+                
+          
                     Persistance p = new Persistance();
                     //ResultSet rs3 = stmt.executeQuery(EmployesContantes.REQ_SUPPRIMER);
                     p.supprimer(EmployesConstantes.REQ_SUPPRIMER, cleId);
