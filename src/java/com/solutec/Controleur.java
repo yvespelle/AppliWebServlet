@@ -12,16 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.solutec.EmployesConstantes;
-import com.solutec.Persistance;
-import java.util.ArrayList;
-import com.solutec.EmployeeBean;
-import com.solutec.UtilBean;
+
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-
 import java.sql.PreparedStatement;
+
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -64,8 +60,20 @@ public class Controleur extends HttpServlet {
             rs = stmt.executeQuery(EmployesConstantes.requete);
 
             UtilBean user1 = new UtilBean();
-            
+
             String action;
+
+            Persistance p;
+
+            String cleNom;
+            String clePrenom;
+            String cleAdresse;
+            String cleEmail;
+            String cleTeldom;
+            String cleTelport;
+            String cleTelpro;
+            String cleCodepostal;
+            String cleVille;
 
             while (rs.next()) {
                 user1.setLogin(rs.getString("login"));
@@ -79,7 +87,7 @@ public class Controleur extends HttpServlet {
             if (loginSaisie != null && mdpSaisie != null) {
 
                 if (loginSaisie.equals(user1.getLogin()) && mdpSaisie.equals(user1.getMdp())) {
-                    Persistance p = new Persistance();
+                    p = new Persistance();
                     rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
                     request.setAttribute("cleListe", p.getEmployes(rs2));
                     request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
@@ -100,221 +108,142 @@ public class Controleur extends HttpServlet {
 
             String btn = request.getParameter("bouton");
             String cleId = request.getParameter("idClient");
-            /*
+
             if (btn != null) {
-                if (btn.equals(EmployesConstantes.ACTION_SUPPRIMER)) {
-                    Persistance p = new Persistance();
-                    //ResultSet rs3 = stmt.executeQuery(EmployesContantes.REQ_SUPPRIMER);
-                    p.supprimer(EmployesConstantes.REQ_SUPPRIMER, cleId);
 
-                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", p.getEmployes(rs2));
+                switch (btn) {
 
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                }
-
-                if (btn.equals("Ajouter")) {
-                    request.getRequestDispatcher("test.jsp").forward(request, response);
-                }
-
-                if (btn.equals("Annuler")) {
-                    Persistance p = new Persistance();
-                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", p.getEmployes(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                }
-
-                if (btn.equals("Inserer")) {
-                    Persistance p = new Persistance();
-                    cleId = (String) session.getAttribute("cleEmpSession");
-                    String cleNom = request.getParameter("nom");
-                    String clePrenom = request.getParameter("prenom");
-                    String cleTeldom = request.getParameter("teldom");
-                    String cleTelport = request.getParameter("telport");
-                    String cleTelpro = request.getParameter("telpro");
-                    String cleAdresse = request.getParameter("adresse");
-                    String cleCodepostal = request.getParameter("codepostal");
-                    String cleVille = request.getParameter("ville");
-                    String cleEmail = request.getParameter("email");
-
-                    p.inserer(EmployesConstantes.REQ_ADD_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleTeldom, cleTelport, cleTelpro, cleCodepostal, cleVille);
-
-                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", p.getEmployes(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                }
-
-                if (btn.equals(EmployesConstantes.ACTION_DETAILS)) {
-                    Persistance p = new Persistance();
-                    String cleEmp = request.getParameter("idClient");
-                    session.setAttribute("cleEmpSession", cleEmp);
-                    rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleEmp);
-                    request.setAttribute("cleEmp", p.getEmp(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
-
-                }
-
-                if (btn.equals(EmployesConstantes.ACTION_VOIR_LISTE)) {
-                    Persistance p = new Persistance();
-                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", p.getEmployes(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                }
-
-                if (btn.equals(EmployesConstantes.ACTION_MODIFIER)) {
-                    Persistance p = new Persistance();
-                    cleId = (String) session.getAttribute("cleEmpSession");
-                    String cleNom = request.getParameter("nom");
-                    String clePrenom = request.getParameter("prenom");
-                    String cleAdresse = request.getParameter("adresse");
-                    String cleEmail = request.getParameter("email");
-                    p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
-
-                    rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleId);
-                    request.setAttribute("cleEmp", p.getEmp(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
-                }
-
-                if (btn.equals(EmployesConstantes.ACTION_QUITTER)) {
-                    response.sendRedirect(EmployesConstantes.PAGE_INDEX);
-                }
-                */
-                        
-            if (btn != null) {
-                 
-                switch (btn) 
-                {
                     case (EmployesConstantes.ACTION_SUPPRIMER):
-                        Persistance p = new Persistance();
-                      
-                        
-                    
-                
-          
-                    Persistance p = new Persistance();
-                    //ResultSet rs3 = stmt.executeQuery(EmployesContantes.REQ_SUPPRIMER);
-                    p.supprimer(EmployesConstantes.REQ_SUPPRIMER, cleId);
+                        p = new Persistance();
+                        p.supprimer(EmployesConstantes.REQ_SUPPRIMER, cleId);
+                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
+                        request.setAttribute("cleListe", p.getEmployes(rs2));
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                        break;
 
-                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", p.getEmployes(rs2));
+                    case (EmployesConstantes.ACTION_AJOUTER):
+                        request.getRequestDispatcher("test.jsp").forward(request, response);
+                        break;
 
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                }
+                    case (EmployesConstantes.ACTION_ANNULER):
+                        p = new Persistance();
+                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
+                        request.setAttribute("cleListe", p.getEmployes(rs2));
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                        break;
 
-                if (btn.equals("Ajouter")) {
-                    request.getRequestDispatcher("test.jsp").forward(request, response);
-                }
+                    case (EmployesConstantes.ACTION_INSERER):
+                        p = new Persistance();
+                        //cleId = (String) session.getAttribute("cleEmpSession");
+                        cleNom = request.getParameter("nom");
+                        clePrenom = request.getParameter("prenom");
+                        cleTeldom = request.getParameter("teldom");
+                        cleTelport = request.getParameter("telport");
+                        cleTelpro = request.getParameter("telpro");
+                        cleAdresse = request.getParameter("adresse");
+                        cleCodepostal = request.getParameter("codepostal");
+                        cleVille = request.getParameter("ville");
+                        cleEmail = request.getParameter("email");
 
-                if (btn.equals("Annuler")) {
-                    Persistance p = new Persistance();
-                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", p.getEmployes(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                }
+                        p.inserer(EmployesConstantes.REQ_ADD_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleTeldom, cleTelport, cleTelpro, cleCodepostal, cleVille);
 
-                if (btn.equals("Inserer")) {
-                    Persistance p = new Persistance();
-                    cleId = (String) session.getAttribute("cleEmpSession");
-                    String cleNom = request.getParameter("nom");
-                    String clePrenom = request.getParameter("prenom");
-                    String cleTeldom = request.getParameter("teldom");
-                    String cleTelport = request.getParameter("telport");
-                    String cleTelpro = request.getParameter("telpro");
-                    String cleAdresse = request.getParameter("adresse");
-                    String cleCodepostal = request.getParameter("codepostal");
-                    String cleVille = request.getParameter("ville");
-                    String cleEmail = request.getParameter("email");
+                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
+                        request.setAttribute("cleListe", p.getEmployes(rs2));
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                        break;
 
-                    p.inserer(EmployesConstantes.REQ_ADD_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleTeldom, cleTelport, cleTelpro, cleCodepostal, cleVille);
+                    case (EmployesConstantes.ACTION_DETAILS):
+                        p = new Persistance();
+                        String cleEmp = request.getParameter("idClient");
+                        session.setAttribute("cleEmpSession", cleEmp);
+                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleEmp);
+                        request.setAttribute("cleEmp", p.getEmp(rs2));
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
+                        break;
 
-                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", p.getEmployes(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                }
+                    case (EmployesConstantes.ACTION_VOIR_LISTE):
+                        p = new Persistance();
+                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
+                        request.setAttribute("cleListe", p.getEmployes(rs2));
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                        break;
 
-                if (btn.equals(EmployesConstantes.ACTION_DETAILS)) {
-                    Persistance p = new Persistance();
-                    String cleEmp = request.getParameter("idClient");
-                    session.setAttribute("cleEmpSession", cleEmp);
-                    rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleEmp);
-                    request.setAttribute("cleEmp", p.getEmp(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
+                    case (EmployesConstantes.ACTION_MODIFIER):
+                        p = new Persistance();
+                        cleId = (String) session.getAttribute("cleEmpSession");
+                        cleNom = request.getParameter("nom");
+                        clePrenom = request.getParameter("prenom");
+                        cleAdresse = request.getParameter("adresse");
+                        cleEmail = request.getParameter("email");
+                        p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
 
-                }
+                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleId);
+                        request.setAttribute("cleEmp", p.getEmp(rs2));
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
+                        break;
 
-                if (btn.equals(EmployesConstantes.ACTION_VOIR_LISTE)) {
-                    Persistance p = new Persistance();
-                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", p.getEmployes(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                }
+                    case (EmployesConstantes.ACTION_QUITTER):
+                        response.sendRedirect(EmployesConstantes.PAGE_INDEX);
+                        break;
 
-                if (btn.equals(EmployesConstantes.ACTION_MODIFIER)) {
-                    Persistance p = new Persistance();
-                    cleId = (String) session.getAttribute("cleEmpSession");
-                    String cleNom = request.getParameter("nom");
-                    String clePrenom = request.getParameter("prenom");
-                    String cleAdresse = request.getParameter("adresse");
-                    String cleEmail = request.getParameter("email");
-                    p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
-
-                    rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleId);
-                    request.setAttribute("cleEmp", p.getEmp(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
-                }
-
-                if (btn.equals(EmployesConstantes.ACTION_QUITTER)) {
-                    response.sendRedirect(EmployesConstantes.PAGE_INDEX);
                 }
             }
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
+    }   catch (ClassNotFoundException ex) {
             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    }    
+        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+        /**
+         * Handles the HTTP <code>GET</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doGet
+        (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                processRequest(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }
+  
+        /**
+         * Handles the HTTP <code>POST</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doPost
+        (HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            try {
+                processRequest(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+        
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
+     
 }

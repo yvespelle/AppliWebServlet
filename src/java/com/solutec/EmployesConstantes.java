@@ -34,6 +34,9 @@ public class EmployesConstantes {
     public static final String ACTION_VOIR_LISTE = "Voir liste";
     public static final String ACTION_LOGIN = "Login";
     public static final String ACTION_QUITTER = "Quitter";
+    public static final String ACTION_AJOUTER = "Ajouter";
+    public static final String ACTION_ANNULER = "Annuler";
+    public static final String ACTION_INSERER= "Inserer";
 
     public static final String PAGE_INDEX = "accueil.jsp";
     public static final String PAGE_CONTROLEUR = "Controleur";

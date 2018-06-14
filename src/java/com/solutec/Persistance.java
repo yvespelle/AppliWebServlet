@@ -24,12 +24,15 @@ public class Persistance {
     ResultSet rs2;
     PreparedStatement pstmt2;
     EmployeeBean eb2;
+    
+   
 
-    public ResultSet getConnexion(String requete2) {
+    public ResultSet getConnexion(String requete2) throws ClassNotFoundException {
         try {
             conn2 = DriverManager.getConnection(EmployesConstantes.URL2, EmployesConstantes.USER2, EmployesConstantes.MDP2);
             stmt2 = conn2.createStatement();
             rs2 = stmt2.executeQuery(requete2);
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (SQLException sqle) {
             System.out.println("ERREUR : " + sqle.getMessage());
         }
@@ -95,6 +98,7 @@ public class Persistance {
             pstmt2.setString(8, cleVille);
             pstmt2.setString(9, cleEmail);
             pstmt2.executeUpdate();
+            System.out.println("");
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
