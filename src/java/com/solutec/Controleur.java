@@ -98,7 +98,10 @@ public class Controleur extends HttpServlet {
 
             String btn = request.getParameter("bouton");
             String cleId = request.getParameter("idClient");
-
+            
+            if (btn == null) {
+                request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
+            }
             if (btn != null) {
                 if (btn.equals(EmployesConstantes.ACTION_SUPPRIMER)) {
                     Persistance p = new Persistance();

@@ -24,53 +24,42 @@
         <div class="container" style="margin-top:100px">
             <div class="col-md-4">
 
-                <span style="color:red">  
+                <span style="color:red"><i> 
 
                     <c:choose>
                         <c:when test="${!empty cleI}">
                             <c:if test="${cleI eq 1}">
                                 Vous devez remplir les champs
                             </c:if> 
-                                <c:if test="${cleI eq 2}">
-                                    il y a une erreur, Veuillez réessayer
+                            <c:if test="${cleI eq 2}">
+                                il y a une erreur, Veuillez réessayer
                             </c:if>    
-                    </c:when>
-                   </c:choose>
-                            <%--
-                                Integer i = (Integer) request.getAttribute("cleI");
-                                if (i != null) {
-                                    if (i.equals(1)) {
-                                        out.println("Vous devez remplir tous les champs !");
-                                    } else if (i.equals(2)) {
-                                        out.println("il y a une erreur, Veuillez réessayer");
-                                    }
-                                }
+                        </c:when>
+                    </c:choose>
 
-                            --%>
+                </i></span>
 
-                            </span>
-
-                            <div class="login-panel panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Login</h3>
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Login</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="Controleur" method="POST">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Login" name="login" autofocus="">
                                 </div>
-                                <div class="panel-body">
-                                    <form action="Controleur" method="POST">
-                                        <fieldset>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="Login" name="login" autofocus="">
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="Mot de passe" name="mdp" type="password">
-                                            </div>
-
-                                            <input type="submit" name="action" value="Login" class="btn btn-primary"/>
-                                        </fieldset>
-                                    </form>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Mot de passe" name="mdp" type="password">
                                 </div>
-                            </div>
-                            </div>
-                            </div>
 
-                            </body>
-                            </html>
+                                <input type="submit" name="action" value="Login" class="btn btn-primary"/>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

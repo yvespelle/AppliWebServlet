@@ -45,25 +45,25 @@
                     ArrayList<EmployeeBean> listUser2 = (ArrayList<EmployeeBean>) request.getAttribute("cleListe");
                     int i;
                     for (i = 0; i < listUser2.size(); i++) {
-                %>
-                <tr> 
-                    <td>  <INPUT TYPE="radio" NAME='idClient' VALUE="<%out.println(listUser2.get(i).getId());%>" CHECKED ></td>
-                    <td> <span style="color: blueviolet"> <% out.println(listUser2.get(i).getNom());%></span></td>
-                    <td>  <% out.println(listUser2.get(i).getPrenom());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getTeldom());%>    </td>
-                    <td>      </td>
-                    <td>  <% out.println(listUser2.get(i).getTelpro());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getAdresse());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getCodepostal());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getVille());%>    </td>
-                    <td>  <% out.println(listUser2.get(i).getEmail());%>    </td>
+                        %>
+                        <tr> 
+                            <td>  <INPUT TYPE="radio" NAME='idClient' VALUE="<%out.println(listUser2.get(i).getId());%>" CHECKED ></td>
+                            <td> <span style="color: blueviolet"> <% out.println(listUser2.get(i).getNom());%></span></td>
+                            <td>  <% out.println(listUser2.get(i).getPrenom());%>    </td>
+                            <td>  <% out.println(listUser2.get(i).getTeldom());%>    </td>
+                            <td>      </td>
+                            <td>  <% out.println(listUser2.get(i).getTelpro());%>    </td>
+                            <td>  <% out.println(listUser2.get(i).getAdresse());%>    </td>
+                            <td>  <% out.println(listUser2.get(i).getCodepostal());%>    </td>
+                            <td>  <% out.println(listUser2.get(i).getVille());%>    </td>
+                            <td>  <% out.println(listUser2.get(i).getEmail());%>    </td>
 
-                    <% } %>
-                </tr>    
-                    <input type='submit' name="bouton" value="Quitter" onclick="twFermer()" />
-                    <input type='submit' name="bouton" value="Supprimer"/>                                     
-                    <input type='submit' name="bouton" value="Details"/>
-                     <input type='submit' name="bouton" value="Ajouter"/>
+                            <% } %>
+                        </tr>    
+                        <input type='submit' name="bouton" value="Quitter" onclick="twFermer()" />
+                        <input type='submit' name="bouton" value="Supprimer"/>                                     
+                        <input type='submit' name="bouton" value="Details"/>
+                        <input type='submit' name="bouton" value="Ajouter"/>
                 </form>
             </div>
         </div>         

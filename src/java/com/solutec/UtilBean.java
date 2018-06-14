@@ -10,12 +10,9 @@ package com.solutec;
  * @author esic
  */
 public class UtilBean {
+
     private String login;
     private String mdp;
-    
-    
-    
-    
 
     public String getLogin() {
         return login;
@@ -32,5 +29,5 @@ public class UtilBean {
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
-    
+
 }

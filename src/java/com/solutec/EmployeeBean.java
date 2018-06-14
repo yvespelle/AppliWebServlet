@@ -10,6 +10,7 @@ package com.solutec;
  * @author esic
  */
 public class EmployeeBean {
+
     private String id;
     private String teldom;
     private String telpro;
@@ -101,9 +102,4 @@ public class EmployeeBean {
         this.id = id;
     }
 
-    
-    
-    }
-    
-    
-
+}

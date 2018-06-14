@@ -95,7 +95,7 @@ public class Persistance {
             pstmt2.setString(8, cleVille);
             pstmt2.setString(9, cleEmail);
             pstmt2.executeUpdate();
-            
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
