@@ -4,6 +4,7 @@
     Author     : esic
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -23,20 +24,20 @@
         <div class="container" style="margin-top:100px">
             <div class="col-md-4">
 
-                <span style="color:red">          
-                     <%
-                Integer i = (Integer) request.getAttribute("cleI");
-                if (i != null) {
-                    if (i.equals(1)) {
-                        out.println("Vous devez remplir tous les champs !");
-                    } else if (i.equals(2)) {
-                        out.println("il y a une erreur, Veuillez réessayer");
-                    }
-                }
+                <span style="color:red"><i> 
 
-            %>
-                    
-                </span>
+                    <c:choose>
+                        <c:when test="${!empty cleI}">
+                            <c:if test="${cleI eq 1}">
+                                Vous devez remplir les champs
+                            </c:if> 
+                            <c:if test="${cleI eq 2}">
+                                il y a une erreur, Veuillez réessayer
+                            </c:if>    
+                        </c:when>
+                    </c:choose>
+
+                </i></span>
 
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">

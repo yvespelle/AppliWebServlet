@@ -26,7 +26,7 @@ public class EmployesConstantes {
     public static final String REQ_SELECT_EMPLOYE = "SELECT * from EMPLOYES where ID=?";
     public static final String REQ_MODIF_EMPLOYE = "UPDATE EMPLOYES SET NOM=?, PRENOM=?, ADRESSE=?, EMAIL=? where ID =?";
     public static final String REQ_ADD_EMPLOYE = "INSERT INTO EMPLOYES(NOM, PRENOM, TELDOM, TELPORT, TELPRO, ADRESSE, CODEPOSTAL, VILLE, EMAIL) VALUES (?,?,?,?,?,?,?,?,?)";
-    
+
     public static final String ACTION = "action";
     public static final String ACTION_SUPPRIMER = "Supprimer";
     public static final String ACTION_DETAILS = "Details";

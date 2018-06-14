@@ -3,6 +3,7 @@
     <!--    Permet de lancer l'index sous un autre nom-->
     <welcome-file-list>
         <welcome-file> Controleur</welcome-file>
+        <welcome-file> Controleur </welcome-file>
     </welcome-file-list>
     
     <jsp-config>
